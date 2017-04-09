@@ -1,6 +1,6 @@
 # Fractionator
 
-*Team* : Jacob Westerback, Brian Sandon, Megan Smith
+**Team** : Jacob Westerback, Brian Sandon, Megan Smith
 
 [Source Code](https://github.com/solanin/fractionator)
 
@@ -27,7 +27,7 @@ Fractionator will be a game for fourth graders focusing on the topic of Number a
 Build and Run for [XO](http://laptop.org/en/laptop/index.shtml)
 
 ## TimeLine
-                | Team Proposal | Prototype | Working Version | Final Version
+. | Team Proposal | Prototype | Working Version | Final Version
 -------------|----------------------|--------------|------------------------|------------------
 Due Date | 4/10 | 4/19 | 5/01 | 5/10
 Completed | Individual Team Proposals | Moving Cards | Functional Game Loop | See Goals
