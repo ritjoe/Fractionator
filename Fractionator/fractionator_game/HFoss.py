@@ -3,10 +3,36 @@ import pygame
 from gi.repository import Gtk
 
 
+class cards:
+    def __init__(self):
+        print("init card")
+
+
+class button:
+    def __init__(self, xLoc, yLoc, width, height):
+        self.x = xLoc
+        self.y = yLoc
+        self.w = width
+        self.h = height
+        slef.color = (255, 0, 0)
+
+    def isClicked(xLoc, yLoc):
+        if (xLoc > self.x) and (xLoc < self.x + self.w) and (yLoc > self.y) and (yLoc < self.y + self.h):
+            return true
+        else:
+            return false
+
+    def drawButton(self):
+        pygame.draw.rectangle(screen, self.color, (self.x, self.y), self.w, self.h)
+
+
 class HFoss:
     def __init__(self):
         # Set up a clock for managing the frame rate.
         self.clock = pygame.time.Clock()
+
+        # used for managing the gamestate
+        self.gameState = 0
 
         self.x = -100
         self.y = 100
@@ -16,6 +42,13 @@ class HFoss:
 
         self.paused = False
         self.direction = 1
+
+        startButton = Button(10, 10, 100, 50)
+        replayButton = Button(10, 30, 100, 50)
+
+    def replay(self):
+        # reset variables
+        self.gameState = 0
 
     def set_paused(self, paused):
         self.paused = paused
@@ -51,32 +84,59 @@ class HFoss:
                     elif event.key == pygame.K_RIGHT:
                         self.direction = 1
 
-            # Move the ball
+            # Play Game
             if not self.paused:
-                self.x += self.vx * self.direction
-                if self.direction == 1 and self.x > screen.get_width() + 100:
-                    self.x = -100
-                elif self.direction == -1 and self.x < -100:
-                    self.x = screen.get_width() + 100
+                # Start Screen
+                if gameState == 0:
+                    # Clear Display
+                    screen.fill((255, 255, 255))  # 255 for white
 
-                self.y += self.vy
-                if self.y > screen.get_height() - 100:
-                    self.y = screen.get_height() - 100
-                    self.vy = -self.vy
+                    # Draw the button
+                    startButton.drawButton()
 
-                self.vy += 5
+                    if startButton.isClicked():
+                        gameState = 1
 
-            # Clear Display
-            screen.fill((255, 255, 255))  # 255 for white
+                # Game
+                elif gameState == 1:
+                    # Move Ball
+                    self.x += self.vx * self.direction
+                    if self.direction == 1 and self.x > screen.get_width() + 100:
+                        self.x = -100
+                    elif self.direction == -1 and self.x < -100:
+                        self.x = screen.get_width() + 100
 
-            # Draw the ball
-            pygame.draw.circle(screen, (255, 0, 0), (self.x, self.y), 100)
+                    self.y += self.vy
+                    
+                    if self.y > screen.get_height() - 100:
+                        self.y = screen.get_height() - 100
+                        self.vy = -self.vy
 
-            # Flip Display
-            pygame.display.flip()
+                    self.vy += 5
 
-            # Try to stay at 30 FPS
-            self.clock.tick(30)
+                    # Clear Display
+                    screen.fill((255, 255, 255))  # 255 for white
+                    # Draw the ball
+                    pygame.draw.circle(screen, (255, 0, 0), (self.x, self.y), 100)
+
+                    # Flip Display
+                    pygame.display.flip()
+
+                    # Try to stay at 30 fps
+                    self.clock.tick(30)
+
+                    if self.x > screen.get_width() + 100:
+                        gameState == 2
+
+                    # Game Over
+                elif gameState == 2:
+                    # Clear Display
+                    screen.fill((255, 255, 255))  # 255 for white
+	
+                    # Draw the button
+                    replayButton.drawButton()
+                    if replayButton.isClicked():
+                        replay()
 
 
 # This function is called when the game is run directly from the command line:
@@ -84,7 +144,7 @@ class HFoss:
 def main():
     pygame.init()
     pygame.display.set_mode((0, 0), pygame.RESIZABLE)
-    game = HFoss()
+    game = hfoss()
     game.run()
 
 if __name__ == '__main__':
