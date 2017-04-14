@@ -3,7 +3,7 @@ import pygame
 from gi.repository import Gtk
 
 
-class hfoss:
+class HFoss:
     def __init__(self):
         # Set up a clock for managing the frame rate.
         self.clock = pygame.time.Clock()
@@ -84,7 +84,7 @@ class hfoss:
 def main():
     pygame.init()
     pygame.display.set_mode((0, 0), pygame.RESIZABLE)
-    game = hfoss()
+    game = HFoss()
     game.run()
 
 if __name__ == '__main__':

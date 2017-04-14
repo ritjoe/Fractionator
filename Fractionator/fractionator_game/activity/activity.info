@@ -1,0 +1,6 @@
+[Activity]
+name = Fractionator Game
+bundle_id = edu.rit.HFoss
+exec = sugar-activity HFossActivity.HFossActivity
+icon = activity-generic
+activity_version = 1

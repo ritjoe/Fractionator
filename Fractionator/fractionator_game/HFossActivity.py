@@ -13,17 +13,17 @@ from sugar3.activity.widgets import StopButton
 
 import sugargame.canvas
 
-import hfoss
+import HFoss
 
 
-class hfossActivity(sugar3.activity.activity.Activity):
+class HFossActivity(sugar3.activity.activity.Activity):
     def __init__(self, handle):
-        super(hfossActivity, self).__init__(handle)
+        super(HFossActivity, self).__init__(handle)
 
         self.paused = False
 
         # Create the game instance.
-        self.game = hfoss.hfoss()
+        self.game = HFoss.HFoss()
 
         # Build the activity toolbar.
         self.build_toolbar()
